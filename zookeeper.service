@@ -1,0 +1,17 @@
+[Unit]
+Description=Apache Zookeeper server 
+Documentation=http://zookeeper.apache.org
+Requires=network.target remote-fs.target 
+After=network.target remote-fs.target
+
+[Service]
+Type=forking
+User=zookeeper
+Group=zookeeper
+ExecStart=/opt/kafka/bin/zookeeper-server-start.sh -daemon /opt/kafka/config/zookeeper.properties
+ExecStop=/opt/kafka/bin/zookeeper-server-stop.sh
+ExecReload=/opt/kafka/bin/zookeeper-server-stop.sh && /opt/kafka/bin/zookeeper-server-start.sh -daemon /opt/kafka/config/zookeeper.properties
+WorkingDirectory=/opt/kafka/libs
+
+[Install]
+WantedBy=multi-user.target
