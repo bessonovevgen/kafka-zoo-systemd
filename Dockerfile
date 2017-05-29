@@ -42,4 +42,7 @@ EXPOSE 22 80 9092
 
 #CMD ["/usr/bin/start-kafka.sh"]
 
+RUN useradd -ms /bin/bash ssh-user
+mkdir -p ~/.ssh
+
 CMD ["/usr/sbin/init"]
